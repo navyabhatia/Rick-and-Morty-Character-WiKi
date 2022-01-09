@@ -11,9 +11,8 @@ import {BrowserRouter as Router,Routes,Route } from 'react-router-dom'
 import SavedCharacters from "./Pages/SavedCharacters";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
-
-
-
+import LoginPage from "./Pages/LoginPage";
+import RegisterPage from "./Pages/RegisterPage";
 //all components bhi import krne hai abhi
 /*
 bootstarp vala dekh lena hta lena
@@ -28,8 +27,8 @@ function App(){
        <Routes>
          <Route path="/" element ={<Home />} />
          <Route path="/Savedcharacters" element ={<SavedCharacters />} />
-         <Route path="/login" element ={<Login />} />
-         <Route path="/register" element ={<Register />} />
+         <Route path="/login" element ={<LoginPage />} />
+         <Route path="/register" element ={<RegisterPage />} />
 
 
        </Routes>
