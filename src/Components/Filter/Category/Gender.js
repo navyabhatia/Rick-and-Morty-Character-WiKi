@@ -1,4 +1,6 @@
 import React from "react";
+import FilterBTN from "../FilterBTN";
+import "../Filter.css"
 import { ExpandMore } from "@material-ui/icons";
 import {
   Accordion,
@@ -6,17 +8,28 @@ import {
   AccordionDetails
 } from "@material-ui/core";
 
-const Filters = () => {
+const Gender = ({ updateGender, updatePageNumber }) => {
+  let genders = ["female", "male", "genderless", "unknown"];
   return (
     <Accordion>
       <AccordionSummary expandIcon={<ExpandMore />}>Gender</AccordionSummary>
 
-      <AccordionDetails>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-        malesuada lacus ex, sit amet blandit leo lobortis eget.
+      <AccordionDetails className="accordion-body">
+      {genders.map((items, index) => {
+            return (
+              <FilterBTN
+                name="gender"
+                index={index}
+                key={index}
+                updatePageNumber={updatePageNumber}
+                task={updateGender}
+                input={items}
+              />
+            );
+          })}
       </AccordionDetails>
     </Accordion>
   );
 };
 
-export default Filters;
+export default Gender;

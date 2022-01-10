@@ -1,5 +1,5 @@
 import React from "react";
-import SavedCharacters from "../Components/Characters/SavedCharacters";
+import SavedCharacters from "../Components/Cards/SavedCharacters";
 
 const SavedCharactersPage = () => {
   return (

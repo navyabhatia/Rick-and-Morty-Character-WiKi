@@ -9,10 +9,11 @@ import Filter from "./Components/Filter/Filter";
 import Navbar from "./Components/Navbar/Navbar"
 import {BrowserRouter as Router,Routes,Route } from 'react-router-dom'
 import SavedCharacters from "./Pages/SavedCharacters";
-import Login from "./Pages/Login";
-import Register from "./Pages/Register";
+
 import LoginPage from "./Pages/LoginPage";
 import RegisterPage from "./Pages/RegisterPage";
+import CardDetails from "./Components/Cards/CardsDetails";
+import SavedCharactersPage from "./Pages/SavedCharactersPage";
 //all components bhi import krne hai abhi
 /*
 bootstarp vala dekh lena hta lena
@@ -26,6 +27,8 @@ function App(){
        <div className="App" ><Navbar /></div>
        <Routes>
          <Route path="/" element ={<Home />} />
+         <Route path="/:id" element={<CardDetails />} />
+
          <Route path="/Savedcharacters" element ={<SavedCharacters />} />
          <Route path="/login" element ={<LoginPage />} />
          <Route path="/register" element ={<RegisterPage />} />
@@ -42,8 +45,12 @@ const Home = () => {
   let [pageNumber, setPageNumber] = useState(1); //setpagenum function is used to change the variables value everytime
   //for adding functionality to search bar to actually search
   let [search, setSearch] = useState("");
+  let [status, updateStatus] = useState("");
+  let [gender, updateGender] = useState("");
+  let [species, updateSpecies] = useState("");
 
-  let api = `https://rickandmortyapi.com/api/character/?page=${pageNumber}&name=${search}`; //stored api
+  let api = `https://rickandmortyapi.com/api/character/?page=${pageNumber}&name=${search}&status=${status}&gender=${gender}&species=${species}`; //stored api
+  
   let [fetchedData, updateFetchedData] = useState([]); //fetched data =var and updatfetched data is function which gets called and updates the variable
   let { info, results } = fetchedData; //in this we detrsuctured data into pages=info, results=characters data kyunki hme bss vhi chaiye
   //passing results to cards component
@@ -64,11 +71,18 @@ const Home = () => {
 
         <div className="container">
           <div className="row">
-            <Filter />
+            <Filter  
+             pageNumber={pageNumber}
+            status={status}
+            updateStatus={updateStatus}
+            updateGender={updateGender}
+            updateSpecies={updateSpecies}
+            updatePageNumber={setPageNumber}
+              />
 
             <div className="col-lg-8 col-12">
               <div className="row">
-                <Cards results={results} />
+                <Cards page="/" results={results} />
               </div>
             </div>
           </div>

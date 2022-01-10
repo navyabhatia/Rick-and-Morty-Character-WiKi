@@ -1,4 +1,4 @@
-async function saveCharacterToDatabase(payload) {
+async function saveCharacterToDatabase(id,name,status,species) {
   try {
     let allSaveCharacters = localStorage.getItem("saveCharacters");
     if (!allSaveCharacters) {
@@ -11,7 +11,7 @@ async function saveCharacterToDatabase(payload) {
     );
     // check if character already saved
     const characterExist = allSaveCharactersArray?.some(
-      (item) => item.id === payload.id
+      (item) => item.id === id
     );
 
     if (characterExist) {
@@ -19,11 +19,11 @@ async function saveCharacterToDatabase(payload) {
     }
 
     // save character only if not saved yet
-    const { episode, location, origin, ...resData } = payload;
+    //const { episode, location, origin, ...resData } = payload;
     // save only necessary data to save localstorage space
     const CURRENT_SAVED_CHARACTERS = [
-      ...allSaveCharactersArray,
-      { ...resData },
+      ...allSaveCharactersArray
+      
     ];
     localStorage.setItem(
       "saveCharacters",
@@ -32,7 +32,7 @@ async function saveCharacterToDatabase(payload) {
     return {
       success: true,
       msg: "Character saved successfully",
-      data: resData,
+      data: id,
     };
   } catch (err) {
     return { success: false, msg: `${err.message}` };
